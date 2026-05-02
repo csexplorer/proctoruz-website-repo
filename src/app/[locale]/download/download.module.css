@@ -1,0 +1,141 @@
+.hero {
+  padding: 74px 0 58px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(247, 250, 249, 1)),
+    linear-gradient(120deg, rgba(33, 142, 137, 0.12), rgba(244, 184, 96, 0.12));
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.75fr);
+  gap: 42px;
+  align-items: center;
+}
+
+.heroCopy {
+  max-width: 720px;
+}
+
+.title {
+  max-width: 760px;
+  font-size: clamp(42px, 7vw, 72px);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.lead {
+  max-width: 650px;
+  line-height: 1.65;
+}
+
+.meta {
+  min-width: 160px;
+  padding: 14px 16px;
+  border: 1px solid rgba(19, 32, 31, 0.08);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.appPanel {
+  display: flex;
+  min-height: 350px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 28px;
+  border: 1px solid rgba(19, 32, 31, 0.1);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 28px 80px rgba(21, 54, 51, 0.12);
+}
+
+.panelGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.panelGrid span {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid rgba(19, 32, 31, 0.08);
+  border-radius: 8px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.downloads,
+.guide {
+  padding: 64px 0;
+}
+
+.downloads {
+  background: #fff;
+}
+
+.card {
+  display: flex;
+  min-height: 330px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 24px;
+  border: 1px solid rgba(19, 32, 31, 0.08);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 16px 46px rgba(21, 54, 51, 0.07);
+}
+
+.card h3 {
+  overflow-wrap: anywhere;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.checksum {
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+
+.checksum a {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.guideBlock {
+  padding: 28px;
+  border: 1px solid rgba(19, 32, 31, 0.08);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.guideBlock ul,
+.guideBlock ol {
+  margin: 20px 0 0;
+  padding-left: 22px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+@media (max-width: 62em) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 48em) {
+  .hero {
+    padding: 52px 0 42px;
+  }
+
+  .downloads,
+  .guide {
+    padding: 48px 0;
+  }
+
+  .panelGrid {
+    grid-template-columns: 1fr;
+  }
+}

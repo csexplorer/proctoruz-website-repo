@@ -1,0 +1,8 @@
+{
+  "name": "Proctor.uz",
+  "short_name": "Proctor.uz",
+  "start_url": "/uz",
+  "display": "standalone",
+  "background_color": "#f7faf9",
+  "theme_color": "#218e89"
+}

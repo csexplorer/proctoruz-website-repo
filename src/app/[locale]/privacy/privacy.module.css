@@ -1,0 +1,16 @@
+.page {
+  padding: 76px 0;
+}
+
+.page h1 {
+  font-size: clamp(38px, 6vw, 62px);
+  line-height: 1;
+}
+
+.panel {
+  padding: 30px;
+  border: 1px solid rgba(19, 32, 31, 0.08);
+  border-radius: 8px;
+  background: #fff;
+  line-height: 1.75;
+}
