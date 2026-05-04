@@ -140,22 +140,29 @@ export function DemoClient({ copy, demoApiUrl }: { copy: Copy; demoApiUrl: strin
                     label={copy.name}
                     required
                     value={values.name}
-                    onChange={(event) => setValues((current) => ({ ...current, name: event.currentTarget.value }))}
+                    onChange={(event) => {
+                      const value = event.currentTarget.value;
+                      setValues((current) => ({ ...current, name: value }));
+                    }}
                   />
                   <TextInput
                     label={copy.university}
                     required
                     value={values.university}
-                    onChange={(event) =>
-                      setValues((current) => ({ ...current, university: event.currentTarget.value }))
-                    }
+                    onChange={(event) => {
+                      const value = event.currentTarget.value;
+                      setValues((current) => ({ ...current, university: value }));
+                    }}
                   />
                   <TextInput
                     label={copy.email}
                     required
                     type="email"
                     value={values.email}
-                    onChange={(event) => setValues((current) => ({ ...current, email: event.currentTarget.value }))}
+                    onChange={(event) => {
+                      const value = event.currentTarget.value;
+                      setValues((current) => ({ ...current, email: value }));
+                    }}
                   />
                   {error ? <Alert color="red">{error}</Alert> : null}
                   <Group justify="flex-end">

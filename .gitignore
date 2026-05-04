@@ -7,3 +7,7 @@ dist
 .pnpm-store
 .idea
 .playwright-mcp
+.env
+.env.local
+.env.production
+.env.development
