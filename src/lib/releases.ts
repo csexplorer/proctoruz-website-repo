@@ -31,19 +31,22 @@ type GitHubRelease = {
 
 const fallbackAssets: DownloadAsset[] = [
   {
-    name: 'proctoruz-secure-exam-setup.exe',
-    url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/proctoruz-secure-exam-setup.exe`,
-    kind: 'windows'
+    name: 'ProctorUZ-Secure-Exam-Setup.exe',
+    url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/ProctorUZ-Secure-Exam-Setup.exe`,
+    kind: 'windows',
+    checksum: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/SHA256SUMS.txt`
   },
   {
     name: 'proctoruz-secure-exam-mac-arm64.dmg',
     url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/proctoruz-secure-exam-mac-arm64.dmg`,
-    kind: 'mac-arm'
+    kind: 'mac-arm',
+    checksum: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/SHA256SUMS.txt`
   },
   {
     name: 'proctoruz-secure-exam-mac-x64.dmg',
     url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/proctoruz-secure-exam-mac-x64.dmg`,
-    kind: 'mac-intel'
+    kind: 'mac-intel',
+    checksum: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/SHA256SUMS.txt`
   }
 ];
 
