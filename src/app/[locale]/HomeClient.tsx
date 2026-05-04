@@ -32,7 +32,6 @@ import { HeroVisual } from '@/components/HeroVisual';
 import type { SiteContent } from '@/content/site-content';
 import { Link } from '@/i18n/navigation';
 import type { Locale } from '@/i18n/routing';
-import { siteConfig } from '@/lib/site';
 import classes from './page.module.css';
 
 type Props = {
@@ -84,8 +83,9 @@ export function HomeClient({ locale, copy }: Props) {
                     {page.hero.primaryCta}
                   </Button>
                   <Button
-                    component="a"
-                    href={`mailto:${siteConfig.demoEmail}`}
+                    component={Link}
+                    href="/demo"
+                    locale={locale}
                     size="lg"
                     variant="outline"
                     rightSection={<IconArrowRight size={19} />}
@@ -174,12 +174,12 @@ export function HomeClient({ locale, copy }: Props) {
             </Stack>
             <Button
               component={Link}
-              href="/download"
+              href="/demo"
               locale={locale}
               size="lg"
-              leftSection={<IconDownload size={19} />}
+              rightSection={<IconArrowRight size={19} />}
             >
-              {copy.nav.download}
+              {copy.nav.demo}
             </Button>
           </Group>
         </Container>

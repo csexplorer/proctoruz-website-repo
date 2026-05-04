@@ -41,6 +41,9 @@ export function SiteShell({ locale, content, children }: Props) {
             <Anchor component={Link} href="/download" locale={locale}>
               {content.nav.download}
             </Anchor>
+            <Anchor component={Link} href="/demo" locale={locale}>
+              {content.nav.demo}
+            </Anchor>
           </Group>
 
           <Group gap="xs" className={classes.headerActions}>
@@ -96,8 +99,9 @@ export function SiteShell({ locale, content, children }: Props) {
               </Anchor>
               <Anchor href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</Anchor>
               <Button
-                component="a"
-                href={`mailto:${siteConfig.demoEmail}`}
+                component={Link}
+                href="/demo"
+                locale={locale}
                 variant="subtle"
                 rightSection={<IconArrowRight size={16} />}
               >
