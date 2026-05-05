@@ -26,8 +26,11 @@ type Copy = {
   submit: string;
   loading: string;
   success: string;
+  successLead: string;
   openDemo: string;
+  openDemoInstalled: string;
   download: string;
+  downloadFirst: string;
   error: string;
   steps: string[];
 };
@@ -108,20 +111,13 @@ export function DemoClient({ copy, demoApiUrl }: { copy: Copy; demoApiUrl: strin
                 <Stack gap={4}>
                   <Title order={2}>{copy.success}</Title>
                   <Text c="dimmed">Lead ID: {result.leadId}</Text>
+                  <Text c="dimmed">{copy.successLead}</Text>
                 </Stack>
-                <Button
-                  component="a"
-                  href={result.studentDemoUrl}
-                  rightSection={<IconArrowRight size={18} />}
-                  size="md"
-                >
-                  {copy.openDemo}
-                </Button>
                 <Button
                   component="a"
                   href={result.downloadUrl}
                   leftSection={<IconDownload size={18} />}
-                  variant="light"
+                  size="md"
                   onClick={() => {
                     void fetch(`${demoApiUrl.replace(/\/$/, '')}/api/demo/leads/${result.leadId}/events`, {
                       method: 'POST',
@@ -130,7 +126,15 @@ export function DemoClient({ copy, demoApiUrl }: { copy: Copy; demoApiUrl: strin
                     });
                   }}
                 >
-                  {copy.download}
+                  {copy.downloadFirst}
+                </Button>
+                <Button
+                  component="a"
+                  href={result.studentDemoUrl}
+                  rightSection={<IconArrowRight size={18} />}
+                  variant="light"
+                >
+                  {copy.openDemoInstalled}
                 </Button>
               </Stack>
             ) : (

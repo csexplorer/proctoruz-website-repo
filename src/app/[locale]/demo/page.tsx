@@ -21,8 +21,11 @@ const copy = {
     submit: 'Start interactive demo',
     loading: 'Demo tayyorlanmoqda...',
     success: 'Demo workspace tayyor',
+    successLead: 'Avval desktop appni o‘rnating. Keyin demo imtihonni oching.',
     openDemo: 'Open demo exam',
+    openDemoInstalled: 'App o‘rnatilgan bo‘lsa: Open demo exam',
     download: 'Download desktop app',
+    downloadFirst: '1-qadam: Download desktop app',
     error: 'Demo yaratishda xatolik yuz berdi',
     steps: ['Demo student workspace ochiladi', 'Start with ProctorUZ bosiladi', 'Exam tugagach report magic link bilan ochiladi']
   },
@@ -38,8 +41,11 @@ const copy = {
     submit: 'Start interactive demo',
     loading: 'Готовим демо...',
     success: 'Demo workspace готов',
+    successLead: 'Сначала установите desktop app. Затем откройте demo exam.',
     openDemo: 'Open demo exam',
+    openDemoInstalled: 'Если app уже установлен: Open demo exam',
     download: 'Download desktop app',
+    downloadFirst: 'Шаг 1: Download desktop app',
     error: 'Не удалось создать demo',
     steps: ['Откроется demo student workspace', 'Нажмите Start with ProctorUZ', 'После exam отчет откроется через magic link']
   },
@@ -55,8 +61,11 @@ const copy = {
     submit: 'Start interactive demo',
     loading: 'Preparing demo...',
     success: 'Demo workspace is ready',
+    successLead: 'Install the desktop app first. Then open the demo exam.',
     openDemo: 'Open demo exam',
+    openDemoInstalled: 'Already installed? Open demo exam',
     download: 'Download desktop app',
+    downloadFirst: 'Step 1: Download desktop app',
     error: 'Could not create demo',
     steps: ['A demo student workspace opens', 'Click Start with ProctorUZ', 'After the exam, open the report with a magic link']
   }
