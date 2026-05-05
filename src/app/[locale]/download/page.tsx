@@ -8,28 +8,7 @@ import { DownloadClient } from './DownloadClient';
 
 type Props = {
   params: Promise<{ locale: Locale }>;
-  searchParams?: Promise<{ returnTo?: string | string[] }>;
 };
-
-function getSafeReturnTo(value: string | string[] | undefined) {
-  const rawValue = Array.isArray(value) ? value[0] : value;
-  if (!rawValue) return null;
-
-  try {
-    const url = new URL(rawValue);
-    const allowedOrigins = new Set([
-      new URL(siteConfig.demoApiUrl).origin
-    ]);
-
-    if (allowedOrigins.has(url.origin)) {
-      return url.toString();
-    }
-  } catch {
-    return null;
-  }
-
-  return null;
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -49,9 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function DownloadPage({ params, searchParams }: Props) {
+export default async function DownloadPage({ params }: Props) {
   const { locale } = await params;
-  const resolvedSearchParams = await searchParams;
   setRequestLocale(locale);
 
   return (
@@ -59,7 +37,6 @@ export default async function DownloadPage({ params, searchParams }: Props) {
       locale={locale}
       copy={getContent(locale).download}
       release={await getLatestRelease()}
-      returnToUrl={getSafeReturnTo(resolvedSearchParams?.returnTo)}
     />
   );
 }

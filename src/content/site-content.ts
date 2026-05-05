@@ -48,10 +48,6 @@ export type SiteContent = {
     size: string;
     checksum: string;
     noChecksum: string;
-    returnTitle: string;
-    returnLead: string;
-    returnAction: string;
-    returnCardAction: string;
     requirementsTitle: string;
     requirements: string[];
     stepsTitle: string;
@@ -199,11 +195,6 @@ export const content: Record<Locale, SiteContent> = {
       size: 'Hajm',
       checksum: 'Checksum',
       noChecksum: 'Checksum topilmadi',
-      returnTitle: 'Demo imtihonga qaytish',
-      returnLead:
-        'Appni yuklab olib o‘rnating. O‘rnatish tugagach shu sahifaga qayting va demo imtihonni oching.',
-      returnAction: 'App o‘rnatildi, demo examni ochish',
-      returnCardAction: 'O‘rnatgandan keyin demo examni ochish',
       requirementsTitle: 'System requirements',
       requirements: [
         'Windows 10/11 yoki macOS 12+',
@@ -360,11 +351,6 @@ export const content: Record<Locale, SiteContent> = {
       size: 'Размер',
       checksum: 'Checksum',
       noChecksum: 'Checksum не найден',
-      returnTitle: 'Вернуться к demo exam',
-      returnLead:
-        'Скачайте и установите app. После установки вернитесь на эту страницу и откройте demo exam.',
-      returnAction: 'App установлен, открыть demo exam',
-      returnCardAction: 'После установки открыть demo exam',
       requirementsTitle: 'System requirements',
       requirements: [
         'Windows 10/11 или macOS 12+',
@@ -521,11 +507,6 @@ export const content: Record<Locale, SiteContent> = {
       size: 'Size',
       checksum: 'Checksum',
       noChecksum: 'Checksum not found',
-      returnTitle: 'Return to demo exam',
-      returnLead:
-        'Download and install the app. After installation, come back to this page and open the demo exam.',
-      returnAction: 'App installed, open demo exam',
-      returnCardAction: 'After installing, open demo exam',
       requirementsTitle: 'System requirements',
       requirements: [
         'Windows 10/11 or macOS 12+',

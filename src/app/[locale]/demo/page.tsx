@@ -21,13 +21,16 @@ const copy = {
     submit: 'Start interactive demo',
     loading: 'Demo tayyorlanmoqda...',
     success: 'Demo workspace tayyor',
-    successLead: 'Avval desktop appni o‘rnating. Keyin demo imtihonni oching.',
-    openDemo: 'Open demo exam',
-    openDemoInstalled: 'App o‘rnatilgan bo‘lsa: Open demo exam',
-    download: 'Download desktop app',
+    successLead: 'Bu sahifani ochiq qoldiring. Har bir qadam alohida tabda ochiladi.',
+    openDemoInstalled: '2-qadam: Demo examni alohida tabda oching',
     downloadFirst: '1-qadam: Download desktop app',
+    viewReport: '3-qadam: Reportni org.proctor.uz da ko‘rish',
+    reportWaiting: 'Report exam yakunlangandan keyin aktiv bo‘ladi.',
+    reportReady: 'Report tayyor. Teacher/admin review oynasini oching.',
+    startNew: 'Yangi demo boshlash',
+    expired: 'Demo muddati tugagan. Yangi demo boshlang.',
     error: 'Demo yaratishda xatolik yuz berdi',
-    steps: ['Demo student workspace ochiladi', 'Start with ProctorUZ bosiladi', 'Exam tugagach report magic link bilan ochiladi']
+    steps: ['Desktop appni yuklab oling', 'Demo examni alohida tabda oching', 'Exam tugagach reportni ko‘ring']
   },
   ru: {
     metaTitle: 'Демо ProctorUZ',
@@ -41,13 +44,16 @@ const copy = {
     submit: 'Start interactive demo',
     loading: 'Готовим демо...',
     success: 'Demo workspace готов',
-    successLead: 'Сначала установите desktop app. Затем откройте demo exam.',
-    openDemo: 'Open demo exam',
-    openDemoInstalled: 'Если app уже установлен: Open demo exam',
-    download: 'Download desktop app',
+    successLead: 'Оставьте эту страницу открытой. Каждый шаг откроется в отдельной вкладке.',
+    openDemoInstalled: 'Шаг 2: Откройте demo exam в отдельной вкладке',
     downloadFirst: 'Шаг 1: Download desktop app',
+    viewReport: 'Шаг 3: Посмотреть report в org.proctor.uz',
+    reportWaiting: 'Report станет доступен после завершения exam.',
+    reportReady: 'Report готов. Откройте teacher/admin review.',
+    startNew: 'Начать новое демо',
+    expired: 'Срок demo истек. Начните новое demo.',
     error: 'Не удалось создать demo',
-    steps: ['Откроется demo student workspace', 'Нажмите Start with ProctorUZ', 'После exam отчет откроется через magic link']
+    steps: ['Скачайте desktop app', 'Откройте demo exam в отдельной вкладке', 'После exam откройте report']
   },
   en: {
     metaTitle: 'ProctorUZ self-service demo',
@@ -61,13 +67,16 @@ const copy = {
     submit: 'Start interactive demo',
     loading: 'Preparing demo...',
     success: 'Demo workspace is ready',
-    successLead: 'Install the desktop app first. Then open the demo exam.',
-    openDemo: 'Open demo exam',
-    openDemoInstalled: 'Already installed? Open demo exam',
-    download: 'Download desktop app',
+    successLead: 'Keep this page open. Each step opens in a separate tab.',
+    openDemoInstalled: 'Step 2: Open demo exam in a separate tab',
     downloadFirst: 'Step 1: Download desktop app',
+    viewReport: 'Step 3: View report in org.proctor.uz',
+    reportWaiting: 'The report becomes available after the exam is completed.',
+    reportReady: 'Report is ready. Open teacher/admin review.',
+    startNew: 'Start new demo',
+    expired: 'Demo expired. Start a new demo.',
     error: 'Could not create demo',
-    steps: ['A demo student workspace opens', 'Click Start with ProctorUZ', 'After the exam, open the report with a magic link']
+    steps: ['Download the desktop app', 'Open demo exam in a separate tab', 'View report after the exam']
   }
 };
 

@@ -66,18 +66,6 @@
   font-weight: 700;
 }
 
-.returnPanel {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px;
-  align-items: center;
-  padding: 18px;
-  border: 1px solid rgba(28, 187, 139, 0.24);
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(204, 251, 241, 0.9), rgba(255, 255, 255, 0.95));
-  box-shadow: 0 16px 46px rgba(21, 54, 51, 0.08);
-}
-
 .downloads,
 .guide {
   padding: 64px 0;
@@ -151,7 +139,4 @@
     grid-template-columns: 1fr;
   }
 
-  .returnPanel {
-    grid-template-columns: 1fr;
-  }
 }

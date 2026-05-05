@@ -15,7 +15,6 @@ import {
 } from '@mantine/core';
 import {
   IconAlertCircle,
-  IconArrowRight,
   IconBrandApple,
   IconBrandWindows,
   IconDeviceDesktop,
@@ -34,12 +33,11 @@ type Props = {
   locale: Locale;
   copy: SiteContent['download'];
   release: ReleaseInfo;
-  returnToUrl?: string | null;
 };
 
 const orderedKinds = ['windows', 'mac-arm', 'mac-intel', 'linux', 'other'] as const;
 
-export function DownloadClient({ locale, copy, release, returnToUrl }: Props) {
+export function DownloadClient({ locale, copy, release }: Props) {
   const sortedAssets = [...release.assets].sort(
     (a, b) => orderedKinds.indexOf(a.kind) - orderedKinds.indexOf(b.kind)
   );
@@ -81,23 +79,6 @@ export function DownloadClient({ locale, copy, release, returnToUrl }: Props) {
                   {copy.fallbackNotice}
                 </Alert>
               ) : null}
-
-              {returnToUrl ? (
-                <Box className={classes.returnPanel}>
-                  <Stack gap={6}>
-                    <Title order={2}>{copy.returnTitle}</Title>
-                    <Text c="dimmed">{copy.returnLead}</Text>
-                  </Stack>
-                  <Button
-                    component="a"
-                    href={returnToUrl}
-                    rightSection={<IconArrowRight size={18} />}
-                    size="md"
-                  >
-                    {copy.returnAction}
-                  </Button>
-                </Box>
-              ) : null}
             </Stack>
 
             <Box className={classes.appPanel}>
@@ -123,7 +104,7 @@ export function DownloadClient({ locale, copy, release, returnToUrl }: Props) {
         <Container size="xl">
           <SimpleGrid cols={{ base: 1, md: 2, lg: 3 }} spacing="md">
             {primaryAssets.map((asset) => (
-              <DownloadCard key={asset.name} asset={asset} copy={copy} returnToUrl={returnToUrl} />
+              <DownloadCard key={asset.name} asset={asset} copy={copy} />
             ))}
           </SimpleGrid>
 
@@ -132,7 +113,7 @@ export function DownloadClient({ locale, copy, release, returnToUrl }: Props) {
               <Title order={2}>{copy.otherDownloads}</Title>
               <SimpleGrid cols={{ base: 1, md: 2, lg: 3 }} spacing="md">
                 {otherAssets.map((asset) => (
-                  <DownloadCard key={asset.name} asset={asset} copy={copy} returnToUrl={returnToUrl} />
+                  <DownloadCard key={asset.name} asset={asset} copy={copy} />
                 ))}
               </SimpleGrid>
             </Stack>
@@ -171,15 +152,7 @@ const downloadIcons = {
   other: IconPackage
 } satisfies Record<DownloadAsset['kind'], typeof IconPackage>;
 
-function DownloadCard({
-  asset,
-  copy,
-  returnToUrl
-}: {
-  asset: DownloadAsset;
-  copy: SiteContent['download'];
-  returnToUrl?: string | null;
-}) {
+function DownloadCard({ asset, copy }: { asset: DownloadAsset; copy: SiteContent['download'] }) {
   const Icon = downloadIcons[asset.kind] ?? IconFileTypeZip;
 
   return (
@@ -214,17 +187,6 @@ function DownloadCard({
       >
         {copy.primaryAction}
       </Button>
-      {returnToUrl ? (
-        <Button
-          component="a"
-          href={returnToUrl}
-          rightSection={<IconArrowRight size={18} />}
-          variant="light"
-          fullWidth
-        >
-          {copy.returnCardAction}
-        </Button>
-      ) : null}
     </Box>
   );
 }
