@@ -345,7 +345,8 @@ export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: strin
                     placeholder={`${PHONE_PREFIX} 00 000 00 00`}
                     value={values.phone}
                     onChange={(event) => {
-                      setValues((current) => ({ ...current, phone: formatPhone(event.currentTarget.value) }));
+                      const value = event.currentTarget.value;
+                      setValues((current) => ({ ...current, phone: formatPhone(value) }));
                     }}
                     error={
                       getPhoneDigits(values.phone).length > 0 && getPhoneDigits(values.phone).length !== PHONE_DIGIT_LIMIT
