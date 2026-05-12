@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import {
   Alert,
@@ -16,7 +16,16 @@ import {
   ThemeIcon,
   Title
 } from '@mantine/core';
-import { IconArrowRight, IconDownload, IconExternalLink, IconRefresh, IconSchool, IconShieldCheck } from '@tabler/icons-react';
+import {
+  IconArrowRight,
+  IconDownload,
+  IconExternalLink,
+  IconPhoto,
+  IconRefresh,
+  IconSchool,
+  IconShieldCheck,
+  IconUpload
+} from '@tabler/icons-react';
 import { createApiUrl } from '@/lib/api';
 import classes from './demo.module.css';
 
@@ -24,6 +33,8 @@ const STORAGE_KEY = 'proctoruz-demo:v1';
 const STATUS_POLL_MS = 5000;
 const MAX_PHOTO_SIZE = 5 * 1024 * 1024;
 const PHOTO_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+const PHONE_PREFIX = '+998';
+const PHONE_DIGIT_LIMIT = 9;
 
 type Copy = {
   title: string;
@@ -31,7 +42,9 @@ type Copy = {
   name: string;
   university: string;
   phone: string;
+  phoneInvalid: string;
   photo: string;
+  photoPlaceholder: string;
   photoInvalid: string;
   submit: string;
   loading: string;
@@ -71,6 +84,17 @@ type DemoState = DemoLeadResponse & {
 
 const isExpired = (result: DemoState) => result.expiresAt * 1000 <= Date.now();
 
+const getPhoneDigits = (value: string) => value.replace(/\D/g, '').replace(/^998/, '').slice(0, PHONE_DIGIT_LIMIT);
+
+const formatPhone = (value: string) => {
+  const digits = getPhoneDigits(value);
+  const first = digits.slice(0, 2);
+  const second = digits.slice(2, 5);
+  const third = digits.slice(5, 7);
+  const fourth = digits.slice(7, 9);
+  return [PHONE_PREFIX, first, second, third, fourth].filter(Boolean).join(' ');
+};
+
 const readStoredDemo = (): DemoState | null => {
   try {
     const parsed = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? 'null') as DemoState | null;
@@ -90,7 +114,9 @@ const writeStoredDemo = (result: DemoState) => {
 };
 
 export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: string }) {
-  const [values, setValues] = useState({ name: '', university: '', phone: '', photo: null as File | null });
+  const [values, setValues] = useState({ name: '', university: '', phone: PHONE_PREFIX, photo: null as File | null });
+  const [photoPreviewUrl, setPhotoPreviewUrl] = useState<string | null>(null);
+  const photoPreviewUrlRef = useRef<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<DemoState | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -142,12 +168,26 @@ export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: strin
     return () => window.clearInterval(intervalId);
   }, [activeResult, apiBaseUrl]);
 
+  useEffect(() => {
+    return () => {
+      if (photoPreviewUrlRef.current) {
+        URL.revokeObjectURL(photoPreviewUrlRef.current);
+      }
+    };
+  }, []);
+
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitting(true);
     setError(null);
 
     try {
+      const phoneDigits = getPhoneDigits(values.phone);
+      if (phoneDigits.length !== PHONE_DIGIT_LIMIT) {
+        setError(copy.phoneInvalid);
+        return;
+      }
+
       if (!values.photo || !PHOTO_MIME_TYPES.includes(values.photo.type) || values.photo.size > MAX_PHOTO_SIZE) {
         setError(copy.photoInvalid);
         return;
@@ -156,7 +196,7 @@ export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: strin
       const body = new FormData();
       body.append('name', values.name);
       body.append('university', values.university);
-      body.append('phone', values.phone);
+      body.append('phone', phoneDigits);
       body.append('photo', values.photo);
 
       const response = await fetch(createApiUrl(apiBaseUrl, '/api/demo/leads'), {
@@ -293,18 +333,35 @@ export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: strin
                     label={copy.phone}
                     required
                     type="tel"
+                    inputMode="numeric"
+                    autoComplete="tel"
+                    placeholder={`${PHONE_PREFIX} 00 000 00 00`}
                     value={values.phone}
                     onChange={(event) => {
-                      const value = event.currentTarget.value;
-                      setValues((current) => ({ ...current, phone: value }));
+                      setValues((current) => ({ ...current, phone: formatPhone(event.currentTarget.value) }));
                     }}
+                    error={
+                      getPhoneDigits(values.phone).length > 0 && getPhoneDigits(values.phone).length !== PHONE_DIGIT_LIMIT
+                        ? copy.phoneInvalid
+                        : null
+                    }
                   />
                   <FileInput
                     label={copy.photo}
                     required
+                    clearable
                     accept={PHOTO_MIME_TYPES.join(',')}
+                    leftSection={<IconUpload size={18} />}
+                    placeholder={copy.photoPlaceholder}
                     value={values.photo}
                     onChange={(value) => {
+                      if (photoPreviewUrlRef.current) {
+                        URL.revokeObjectURL(photoPreviewUrlRef.current);
+                        photoPreviewUrlRef.current = null;
+                      }
+                      const nextPreviewUrl = value && PHOTO_MIME_TYPES.includes(value.type) ? URL.createObjectURL(value) : null;
+                      photoPreviewUrlRef.current = nextPreviewUrl;
+                      setPhotoPreviewUrl(nextPreviewUrl);
                       setValues((current) => ({ ...current, photo: value }));
                     }}
                     error={
@@ -313,6 +370,24 @@ export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: strin
                         : null
                     }
                   />
+                  {values.photo ? (
+                    <Box className={classes.photoPreview}>
+                      {photoPreviewUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={photoPreviewUrl} alt={values.photo.name} />
+                      ) : (
+                        <span>
+                          <IconPhoto size={28} />
+                        </span>
+                      )}
+                      <Stack gap={2} className={classes.photoPreviewCopy}>
+                        <Text fw={800}>{values.photo.name}</Text>
+                        <Text size="sm" c="dimmed">
+                          {(values.photo.size / 1024 / 1024).toFixed(2)} MB
+                        </Text>
+                      </Stack>
+                    </Box>
+                  ) : null}
                   {result && isExpired(result) ? <Alert color="yellow">{copy.expired}</Alert> : null}
                   {error ? <Alert color="red">{error}</Alert> : null}
                   <Group justify="flex-end">

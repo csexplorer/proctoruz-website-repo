@@ -55,6 +55,44 @@
   border-radius: 10px;
 }
 
+.photoPreview {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 8px;
+  background: rgba(248, 250, 252, 0.86);
+}
+
+.photoPreview img,
+.photoPreview span {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+}
+
+.photoPreview img {
+  display: block;
+  object-fit: cover;
+}
+
+.photoPreview span {
+  display: grid;
+  place-items: center;
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.photoPreviewCopy {
+  min-width: 0;
+}
+
+.photoPreviewCopy p {
+  overflow-wrap: anywhere;
+}
+
 .action {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
