@@ -30,7 +30,6 @@ import { createApiUrl } from '@/lib/api';
 import classes from './demo.module.css';
 
 const STORAGE_KEY = 'proctoruz-demo:v1';
-const STATUS_POLL_MS = 5000;
 const MAX_PHOTO_SIZE = 5 * 1024 * 1024;
 const PHOTO_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 const PHONE_PREFIX = '+998';
@@ -53,6 +52,7 @@ type Copy = {
   downloadFirst: string;
   openDemoInstalled: string;
   viewReport: string;
+  checkReport: string;
   reportWaiting: string;
   reportReady: string;
   startNew: string;
@@ -118,6 +118,7 @@ export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: strin
   const [photoPreviewUrl, setPhotoPreviewUrl] = useState<string | null>(null);
   const photoPreviewUrlRef = useRef<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [reportChecking, setReportChecking] = useState(false);
   const [result, setResult] = useState<DemoState | null>(null);
   const [error, setError] = useState<string | null>(null);
   const activeResult = result && !isExpired(result) ? result : null;
@@ -138,35 +139,6 @@ export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: strin
     }
     writeStoredDemo(result);
   }, [result]);
-
-  useEffect(() => {
-    if (!activeResult || activeResult.reportReady) return;
-
-    const pollStatus = async () => {
-      if (document.visibilityState !== 'visible') return;
-      const response = await fetch(createApiUrl(apiBaseUrl, `/api/demo/leads/${activeResult.leadId}/status`));
-      if (!response.ok) return;
-
-      const status = (await response.json()) as DemoLeadStatusResponse;
-      setResult((current) => {
-        if (!current || current.leadId !== status.leadId) return current;
-        return {
-          ...current,
-          status: status.status,
-          expiresAt: status.expiresAt,
-          reportReady: status.reportReady,
-          reportMagicUrl: status.reportMagicUrl
-        };
-      });
-    };
-
-    void pollStatus();
-    const intervalId = window.setInterval(() => {
-      void pollStatus();
-    }, STATUS_POLL_MS);
-
-    return () => window.clearInterval(intervalId);
-  }, [activeResult, apiBaseUrl]);
 
   useEffect(() => {
     return () => {
@@ -223,6 +195,35 @@ export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: strin
       setError(copy.error);
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const checkReportStatus = async () => {
+    if (!activeResult || activeResult.reportReady || reportChecking) return;
+    setReportChecking(true);
+    setError(null);
+
+    try {
+      const response = await fetch(createApiUrl(apiBaseUrl, `/api/demo/leads/${activeResult.leadId}/status`));
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const status = (await response.json()) as DemoLeadStatusResponse;
+      setResult((current) => {
+        if (!current || current.leadId !== status.leadId) return current;
+        return {
+          ...current,
+          status: status.status,
+          expiresAt: status.expiresAt,
+          reportReady: status.reportReady,
+          reportMagicUrl: status.reportMagicUrl
+        };
+      });
+    } catch {
+      setError(copy.error);
+    } finally {
+      setReportChecking(false);
     }
   };
 
@@ -299,8 +300,14 @@ export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: strin
                     title={copy.viewReport}
                     href={activeResult.reportReady && activeResult.reportMagicUrl ? activeResult.reportMagicUrl : null}
                     icon={<IconArrowRight size={18} />}
+                    buttonTitle={activeResult.reportReady ? copy.viewReport : copy.checkReport}
                     status={activeResult.reportReady ? copy.reportReady : copy.reportWaiting}
-                    onClick={() => trackEvent('report_opened')}
+                    loading={reportChecking}
+                    onClick={
+                      activeResult.reportReady && activeResult.reportMagicUrl
+                        ? () => trackEvent('report_opened')
+                        : checkReportStatus
+                    }
                   />
                 </Stack>
 
@@ -410,14 +417,18 @@ function DemoAction({
   title,
   href,
   icon,
+  buttonTitle,
   status,
+  loading,
   onClick
 }: {
   number: number;
   title: string;
   href: string | null;
   icon: ReactNode;
+  buttonTitle?: string;
   status?: string;
+  loading?: boolean;
   onClick?: () => void;
 }) {
   return (
@@ -427,17 +438,15 @@ function DemoAction({
         <Text fw={800}>{title}</Text>
         {status ? <Text c="dimmed">{status}</Text> : null}
       </Stack>
-      <Button
-        component="a"
-        href={href ?? undefined}
-        target="_blank"
-        rel="noreferrer"
-        leftSection={icon}
-        disabled={!href}
-        onClick={onClick}
-      >
-        {title}
-      </Button>
+      {href ? (
+        <Button component="a" href={href} target="_blank" rel="noreferrer" leftSection={icon} onClick={onClick}>
+          {buttonTitle ?? title}
+        </Button>
+      ) : (
+        <Button type="button" leftSection={icon} loading={loading} onClick={onClick}>
+          {buttonTitle ?? title}
+        </Button>
+      )}
     </Box>
   );
 }
