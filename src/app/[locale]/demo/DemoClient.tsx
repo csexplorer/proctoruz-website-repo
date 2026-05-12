@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   Container,
+  FileInput,
   Group,
   SimpleGrid,
   Stack,
@@ -16,17 +17,22 @@ import {
   Title
 } from '@mantine/core';
 import { IconArrowRight, IconDownload, IconExternalLink, IconRefresh, IconSchool, IconShieldCheck } from '@tabler/icons-react';
+import { createApiUrl } from '@/lib/api';
 import classes from './demo.module.css';
 
 const STORAGE_KEY = 'proctoruz-demo:v1';
 const STATUS_POLL_MS = 5000;
+const MAX_PHOTO_SIZE = 5 * 1024 * 1024;
+const PHOTO_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 
 type Copy = {
   title: string;
   lead: string;
   name: string;
   university: string;
-  email: string;
+  phone: string;
+  photo: string;
+  photoInvalid: string;
   submit: string;
   loading: string;
   success: string;
@@ -83,9 +89,8 @@ const writeStoredDemo = (result: DemoState) => {
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(result));
 };
 
-export function DemoClient({ copy, demoApiUrl }: { copy: Copy; demoApiUrl: string }) {
-  const normalizedDemoApiUrl = demoApiUrl.replace(/\/$/, '');
-  const [values, setValues] = useState({ name: '', university: '', email: '' });
+export function DemoClient({ copy, apiBaseUrl }: { copy: Copy; apiBaseUrl: string }) {
+  const [values, setValues] = useState({ name: '', university: '', phone: '', photo: null as File | null });
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<DemoState | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -113,7 +118,7 @@ export function DemoClient({ copy, demoApiUrl }: { copy: Copy; demoApiUrl: strin
 
     const pollStatus = async () => {
       if (document.visibilityState !== 'visible') return;
-      const response = await fetch(`${normalizedDemoApiUrl}/api/demo/leads/${activeResult.leadId}/status`);
+      const response = await fetch(createApiUrl(apiBaseUrl, `/api/demo/leads/${activeResult.leadId}/status`));
       if (!response.ok) return;
 
       const status = (await response.json()) as DemoLeadStatusResponse;
@@ -135,7 +140,7 @@ export function DemoClient({ copy, demoApiUrl }: { copy: Copy; demoApiUrl: strin
     }, STATUS_POLL_MS);
 
     return () => window.clearInterval(intervalId);
-  }, [activeResult, normalizedDemoApiUrl]);
+  }, [activeResult, apiBaseUrl]);
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -143,13 +148,23 @@ export function DemoClient({ copy, demoApiUrl }: { copy: Copy; demoApiUrl: strin
     setError(null);
 
     try {
-      const response = await fetch(`${normalizedDemoApiUrl}/api/demo/leads`, {
+      if (!values.photo || !PHOTO_MIME_TYPES.includes(values.photo.type) || values.photo.size > MAX_PHOTO_SIZE) {
+        setError(copy.photoInvalid);
+        return;
+      }
+
+      const body = new FormData();
+      body.append('name', values.name);
+      body.append('university', values.university);
+      body.append('phone', values.phone);
+      body.append('photo', values.photo);
+
+      const response = await fetch(createApiUrl(apiBaseUrl, '/api/demo/leads'), {
         method: 'POST',
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
+          Accept: 'application/json'
         },
-        body: JSON.stringify(values)
+        body
       });
 
       if (!response.ok) {
@@ -179,7 +194,7 @@ export function DemoClient({ copy, demoApiUrl }: { copy: Copy; demoApiUrl: strin
 
   const trackEvent = (type: 'download_clicked' | 'report_opened') => {
     if (!activeResult) return;
-    void fetch(`${normalizedDemoApiUrl}/api/demo/leads/${activeResult.leadId}/events`, {
+    void fetch(createApiUrl(apiBaseUrl, `/api/demo/leads/${activeResult.leadId}/events`), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ type })
@@ -275,14 +290,28 @@ export function DemoClient({ copy, demoApiUrl }: { copy: Copy; demoApiUrl: strin
                     }}
                   />
                   <TextInput
-                    label={copy.email}
+                    label={copy.phone}
                     required
-                    type="email"
-                    value={values.email}
+                    type="tel"
+                    value={values.phone}
                     onChange={(event) => {
                       const value = event.currentTarget.value;
-                      setValues((current) => ({ ...current, email: value }));
+                      setValues((current) => ({ ...current, phone: value }));
                     }}
+                  />
+                  <FileInput
+                    label={copy.photo}
+                    required
+                    accept={PHOTO_MIME_TYPES.join(',')}
+                    value={values.photo}
+                    onChange={(value) => {
+                      setValues((current) => ({ ...current, photo: value }));
+                    }}
+                    error={
+                      values.photo && (!PHOTO_MIME_TYPES.includes(values.photo.type) || values.photo.size > MAX_PHOTO_SIZE)
+                        ? copy.photoInvalid
+                        : null
+                    }
                   />
                   {result && isExpired(result) ? <Alert color="yellow">{copy.expired}</Alert> : null}
                   {error ? <Alert color="red">{error}</Alert> : null}

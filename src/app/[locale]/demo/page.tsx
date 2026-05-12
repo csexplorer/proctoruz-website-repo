@@ -17,7 +17,9 @@ const copy = {
       'Qisqa formani to‘ldiring, demo LMSga kiring, desktop appni o‘rnating va org cabinetda o‘z reportingizni magic link orqali ko‘ring.',
     name: 'Ism va familiya',
     university: 'Universitet yoki tashkilot',
-    email: 'Ish emaili',
+    phone: 'Telefon raqam',
+    photo: 'Yuz rasmi',
+    photoInvalid: 'JPG, PNG yoki WebP formatidagi 5 MB gacha bo‘lgan rasm yuklang.',
     submit: 'Start interactive demo',
     loading: 'Demo tayyorlanmoqda...',
     success: 'Demo workspace tayyor',
@@ -40,7 +42,9 @@ const copy = {
       'Заполните короткую форму, откройте demo LMS, установите desktop app и посмотрите отчет в org cabinet через magic link.',
     name: 'Имя и фамилия',
     university: 'Университет или организация',
-    email: 'Рабочий email',
+    phone: 'Номер телефона',
+    photo: 'Фото лица',
+    photoInvalid: 'Загрузите JPG, PNG или WebP изображение до 5 МБ.',
     submit: 'Start interactive demo',
     loading: 'Готовим демо...',
     success: 'Demo workspace готов',
@@ -63,7 +67,9 @@ const copy = {
       'Fill in a short form, open the demo LMS, install the desktop app, complete the exam, and view your org cabinet report through a magic link.',
     name: 'Full name',
     university: 'University or organization',
-    email: 'Work email',
+    phone: 'Phone number',
+    photo: 'Face photo',
+    photoInvalid: 'Upload a JPG, PNG, or WebP image up to 5 MB.',
     submit: 'Start interactive demo',
     loading: 'Preparing demo...',
     success: 'Demo workspace is ready',
@@ -102,5 +108,5 @@ export default async function DemoPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <DemoClient copy={copy[locale]} demoApiUrl={siteConfig.demoApiUrl} />;
+  return <DemoClient copy={copy[locale]} apiBaseUrl={siteConfig.apiBaseUrl} />;
 }
