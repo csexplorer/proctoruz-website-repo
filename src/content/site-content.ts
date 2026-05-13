@@ -77,15 +77,15 @@ export const content: Record<Locale, SiteContent> = {
     home: {
       metaTitle: 'Online imtihonlar uchun xavfsiz proktoring',
       metaDescription:
-        'Proctor.uz masofaviy imtihonlarda shaxsni aniqlash, monitoring va secure exam browser orqali nazoratni kuchaytiradi.',
+        'Proctor.uz masofaviy imtihonlarda shaxsni aniqlash, monitoring va ProctorUz desktop app orqali nazoratni kuchaytiradi.',
       hero: {
-        eyebrow: 'Secure exam delivery',
+        eyebrow: 'ProctorUz delivery',
         title: 'Online imtihonlarni ishonchli va nazoratli o‘tkazing.',
         lead:
           'Proctor.uz universitetlar, o‘quv markazlari va sertifikatsiya jamoalariga masofaviy imtihonlarda cheating xavfini kamaytirish, talabani tekshirish va sessiya dalillarini tartibli ko‘rishga yordam beradi.',
         primaryCta: 'Desktop app yuklab olish',
         secondaryCta: 'Demo so‘rash',
-        trust: ['Secure exam browser', 'Camera va screen monitoring', 'Session reports']
+        trust: ['ProctorUz desktop app', 'Camera va screen monitoring', 'Session reports']
       },
       problemsTitle: 'Qaysi muammolarni hal qiladi?',
       problemsLead:
@@ -113,7 +113,7 @@ export const content: Record<Locale, SiteContent> = {
         'Proctor.uz imtihon xavfsizligi, kuzatuv va keyingi audit uchun kerakli asosiy oqimlarni bitta mahsulotga jamlaydi.',
       features: [
         {
-          title: 'Secure exam browser',
+          title: 'ProctorUz desktop app',
           text: 'Nomzod imtihon vaqtida kerakli oynadan chiqmasligi va ruxsatsiz vositalardan foydalanmasligi uchun cheklovlar.'
         },
         {
@@ -161,7 +161,7 @@ export const content: Record<Locale, SiteContent> = {
         {
           question: 'Desktop app nima uchun kerak?',
           answer:
-            'Secure exam browser imtihon muhiti ustidan ko‘proq nazorat beradi: browser cheklovlari, monitoring va session evidence shu app orqali ishlaydi.'
+            'ProctorUz desktop app imtihon muhiti ustidan ko‘proq nazorat beradi: browser cheklovlari, monitoring va session evidence shu app orqali ishlaydi.'
         },
         {
           question: 'Payload CMS kerakmi?',
@@ -179,12 +179,12 @@ export const content: Record<Locale, SiteContent> = {
         'Desktop appni yuklab oling yoki jamoangiz uchun demo muhokamasini boshlang.'
     },
     download: {
-      metaTitle: 'Proctoruz Secure Exam appni yuklab olish',
+      metaTitle: 'ProctorUz appni yuklab olish',
       metaDescription:
-        'Windows, macOS va Linux uchun proctoruz-secure-exam desktop app installerlarini yuklab oling.',
-      title: 'Proctoruz Secure Exam',
+        'Windows, macOS va Linux uchun ProctorUz desktop app installerlarini yuklab oling.',
+      title: 'ProctorUz',
       lead:
-        'Online imtihon vaqtida secure browser, monitoring va session evidence uchun desktop appni o‘rnating.',
+        'Online imtihon vaqtida ProctorUz monitoring va session evidence uchun desktop appni o‘rnating.',
       latest: 'Latest release',
       fallbackNotice:
         'GitHub Releases hozircha o‘qilmadi. Quyidagi linklar fallback konfiguratsiyadan ko‘rsatilmoqda.',
@@ -233,15 +233,15 @@ export const content: Record<Locale, SiteContent> = {
     home: {
       metaTitle: 'Безопасный прокторинг для онлайн-экзаменов',
       metaDescription:
-        'Proctor.uz помогает проводить онлайн-экзамены с проверкой личности, мониторингом и secure exam browser.',
+        'Proctor.uz помогает проводить онлайн-экзамены с проверкой личности, мониторингом и desktop app ProctorUz.',
       hero: {
-        eyebrow: 'Secure exam delivery',
+        eyebrow: 'ProctorUz delivery',
         title: 'Проводите онлайн-экзамены под надежным контролем.',
         lead:
           'Proctor.uz помогает университетам, учебным центрам и сертификационным командам снижать риск нарушений, проверять личность кандидата и получать понятные отчеты по сессиям.',
         primaryCta: 'Скачать desktop app',
         secondaryCta: 'Запросить демо',
-        trust: ['Secure exam browser', 'Мониторинг камеры и экрана', 'Отчеты по сессиям']
+        trust: ['Desktop app ProctorUz', 'Мониторинг камеры и экрана', 'Отчеты по сессиям']
       },
       problemsTitle: 'Какие проблемы решает?',
       problemsLead:
@@ -269,7 +269,7 @@ export const content: Record<Locale, SiteContent> = {
         'Proctor.uz объединяет безопасность экзамена, мониторинг и данные для последующего аудита.',
       features: [
         {
-          title: 'Secure exam browser',
+          title: 'Desktop app ProctorUz',
           text: 'Ограничения, которые помогают не покидать нужное окно и не использовать запрещенные инструменты.'
         },
         {
@@ -317,7 +317,7 @@ export const content: Record<Locale, SiteContent> = {
         {
           question: 'Зачем нужен desktop app?',
           answer:
-            'Secure exam browser дает больше контроля над экзаменационной средой: ограничения браузера, мониторинг и session evidence работают через приложение.'
+            'Desktop app ProctorUz дает больше контроля над экзаменационной средой: ограничения браузера, мониторинг и session evidence работают через приложение.'
         },
         {
           question: 'Нужен ли Payload CMS?',
@@ -335,12 +335,12 @@ export const content: Record<Locale, SiteContent> = {
         'Скачайте desktop app или начните обсуждение демо для вашей команды.'
     },
     download: {
-      metaTitle: 'Скачать Proctoruz Secure Exam',
+      metaTitle: 'Скачать ProctorUz',
       metaDescription:
-        'Скачайте desktop installer proctoruz-secure-exam для Windows, macOS и Linux.',
-      title: 'Proctoruz Secure Exam',
+        'Скачайте desktop installer ProctorUz для Windows, macOS и Linux.',
+      title: 'ProctorUz',
       lead:
-        'Установите desktop app для secure browser, мониторинга и session evidence во время онлайн-экзамена.',
+        'Установите desktop app ProctorUz для мониторинга и session evidence во время онлайн-экзамена.',
       latest: 'Последний релиз',
       fallbackNotice:
         'GitHub Releases сейчас недоступен. Ниже показаны ссылки из fallback-конфигурации.',
@@ -389,15 +389,15 @@ export const content: Record<Locale, SiteContent> = {
     home: {
       metaTitle: 'Secure online proctoring for exams',
       metaDescription:
-        'Proctor.uz helps teams run online exams with identity checks, monitoring, secure exam browser, and session reports.',
+        'Proctor.uz helps teams run online exams with identity checks, monitoring, the ProctorUz desktop app, and session reports.',
       hero: {
-        eyebrow: 'Secure exam delivery',
+        eyebrow: 'ProctorUz delivery',
         title: 'Run online exams with confidence and control.',
         lead:
           'Proctor.uz helps universities, training centers, and certification teams reduce cheating risk, verify candidates, and review exam session evidence in one operational flow.',
         primaryCta: 'Download desktop app',
         secondaryCta: 'Request demo',
-        trust: ['Secure exam browser', 'Camera and screen monitoring', 'Session reports']
+        trust: ['ProctorUz desktop app', 'Camera and screen monitoring', 'Session reports']
       },
       problemsTitle: 'What problems does it solve?',
       problemsLead:
@@ -425,7 +425,7 @@ export const content: Record<Locale, SiteContent> = {
         'Proctor.uz brings exam security, monitoring, and post-exam audit workflows into one product.',
       features: [
         {
-          title: 'Secure exam browser',
+          title: 'ProctorUz desktop app',
           text: 'Controls that help candidates stay in the permitted exam window and avoid unauthorized tools.'
         },
         {
@@ -473,7 +473,7 @@ export const content: Record<Locale, SiteContent> = {
         {
           question: 'Why does the exam need a desktop app?',
           answer:
-            'The secure exam browser provides stronger control over the exam environment. Browser restrictions, monitoring, and session evidence run through the app.'
+            'The ProctorUz desktop app provides stronger control over the exam environment. Browser restrictions, monitoring, and session evidence run through the app.'
         },
         {
           question: 'Do we need Payload CMS?',
@@ -491,12 +491,12 @@ export const content: Record<Locale, SiteContent> = {
         'Download the desktop app or start a demo conversation for your team.'
     },
     download: {
-      metaTitle: 'Download Proctoruz Secure Exam',
+      metaTitle: 'Download ProctorUz',
       metaDescription:
-        'Download proctoruz-secure-exam desktop installers for Windows, macOS, and Linux.',
-      title: 'Proctoruz Secure Exam',
+        'Download ProctorUz desktop installers for Windows, macOS, and Linux.',
+      title: 'ProctorUz',
       lead:
-        'Install the desktop app for secure browser, monitoring, and session evidence during online exams.',
+        'Install the ProctorUz desktop app for monitoring and session evidence during online exams.',
       latest: 'Latest release',
       fallbackNotice:
         'GitHub Releases could not be loaded. The links below come from fallback configuration.',

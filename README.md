@@ -1,6 +1,6 @@
 # Proctor.uz Website
 
-Marketing website and download page for `proctoruz-secure-exam`.
+Marketing website and download page for `ProctorUz` desktop app.
 
 ## Stack
 
@@ -20,4 +20,4 @@ pnpm dev
 ## Download configuration
 
 Set `GITHUB_RELEASE_REPO` to the release repository in `owner/name` format.
-If it is omitted, the website uses `proctoruz/proctoruz-secure-exam`.
+If it is omitted, the website uses `proctor-uz/proctor-user-desktop-app-releases`.

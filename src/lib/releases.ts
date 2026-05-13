@@ -31,20 +31,20 @@ type GitHubRelease = {
 
 const fallbackAssets: DownloadAsset[] = [
   {
-    name: 'ProctorUZ-Secure-Exam-Setup.exe',
-    url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/ProctorUZ-Secure-Exam-Setup.exe`,
+    name: 'ProctorUz-Setup.exe',
+    url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/ProctorUz-Setup.exe`,
     kind: 'windows',
     checksum: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/SHA256SUMS.txt`
   },
   {
-    name: 'proctoruz-secure-exam-mac-arm64.dmg',
-    url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/proctoruz-secure-exam-mac-arm64.dmg`,
+    name: 'proctoruz-mac-arm64.dmg',
+    url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/proctoruz-mac-arm64.dmg`,
     kind: 'mac-arm',
     checksum: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/SHA256SUMS.txt`
   },
   {
-    name: 'proctoruz-secure-exam-mac-x64.dmg',
-    url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/proctoruz-secure-exam-mac-x64.dmg`,
+    name: 'proctoruz-mac-x64.dmg',
+    url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/proctoruz-mac-x64.dmg`,
     kind: 'mac-intel',
     checksum: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/SHA256SUMS.txt`
   }

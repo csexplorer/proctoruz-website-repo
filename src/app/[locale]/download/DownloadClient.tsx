@@ -86,8 +86,8 @@ export function DownloadClient({ locale, copy, release }: Props) {
                 <IconDeviceDesktop size={36} />
               </ThemeIcon>
               <Stack gap={4}>
-                <Title order={2}>proctoruz-secure-exam</Title>
-                <Text c="dimmed">Secure browser desktop application</Text>
+                <Title order={2}>ProctorUz</Title>
+                <Text c="dimmed">Desktop proctoring application</Text>
               </Stack>
               <Box className={classes.panelGrid}>
                 <span>Browser lock</span>
