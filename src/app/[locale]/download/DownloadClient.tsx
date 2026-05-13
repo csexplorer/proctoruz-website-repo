@@ -86,7 +86,7 @@ export function DownloadClient({ locale, copy, release }: Props) {
                 <IconDeviceDesktop size={36} />
               </ThemeIcon>
               <Stack gap={4}>
-                <Title order={2}>ProctorUz</Title>
+                <Title order={2}>ProctorUZ</Title>
                 <Text c="dimmed">Desktop proctoring application</Text>
               </Stack>
               <Box className={classes.panelGrid}>

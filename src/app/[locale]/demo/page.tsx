@@ -10,9 +10,9 @@ type Props = {
 
 const copy = {
   uz: {
-    metaTitle: 'ProctorUz self-service demo',
-    metaDescription: 'Demo LMS orqali ProctorUz ilovasini sinab ko‘ring.',
-    title: 'ProctorUz demo ilovasini o‘zingiz sinab ko‘ring',
+    metaTitle: 'ProctorUZ self-service demo',
+    metaDescription: 'Demo LMS orqali ProctorUZ ilovasini sinab ko‘ring.',
+    title: 'ProctorUZ demo ilovasini o‘zingiz sinab ko‘ring',
     lead:
       'Qisqa formani to‘ldiring, demo LMSga kiring, desktop appni o‘rnating va org cabinetda o‘z reportingizni magic link orqali ko‘ring.',
     name: 'Ism va familiya',
@@ -38,9 +38,9 @@ const copy = {
     steps: ['Desktop appni yuklab oling', 'Demo examni alohida tabda oching', 'Exam tugagach reportni ko‘ring']
   },
   ru: {
-    metaTitle: 'Демо ProctorUz',
-    metaDescription: 'Проверьте приложение ProctorUz через демо LMS.',
-    title: 'Попробуйте demo приложение ProctorUz самостоятельно',
+    metaTitle: 'Демо ProctorUZ',
+    metaDescription: 'Проверьте приложение ProctorUZ через демо LMS.',
+    title: 'Попробуйте demo приложение ProctorUZ самостоятельно',
     lead:
       'Заполните короткую форму, откройте demo LMS, установите desktop app и посмотрите отчет в org cabinet через magic link.',
     name: 'Имя и фамилия',
@@ -66,9 +66,9 @@ const copy = {
     steps: ['Скачайте desktop app', 'Откройте demo exam в отдельной вкладке', 'После exam откройте report']
   },
   en: {
-    metaTitle: 'ProctorUz self-service demo',
-    metaDescription: 'Try the ProctorUz application through the demo LMS.',
-    title: 'Try the ProctorUz demo application yourself',
+    metaTitle: 'ProctorUZ self-service demo',
+    metaDescription: 'Try the ProctorUZ application through the demo LMS.',
+    title: 'Try the ProctorUZ demo application yourself',
     lead:
       'Fill in a short form, open the demo LMS, install the desktop app, complete the exam, and view your org cabinet report through a magic link.',
     name: 'Full name',

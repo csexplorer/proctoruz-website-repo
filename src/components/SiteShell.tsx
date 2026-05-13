@@ -86,7 +86,7 @@ export function SiteShell({ locale, content, children }: Props) {
                 <Text fw={700}>Proctor.uz</Text>
               </Group>
               <Text c="dimmed" size="sm">
-                ProctorUz delivery for remote and hybrid assessment workflows.
+                ProctorUZ delivery for remote and hybrid assessment workflows.
               </Text>
             </Stack>
 

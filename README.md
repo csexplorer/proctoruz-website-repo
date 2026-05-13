@@ -1,6 +1,6 @@
 # Proctor.uz Website
 
-Marketing website and download page for `ProctorUz` desktop app.
+Marketing website and download page for `ProctorUZ` desktop app.
 
 ## Stack
 

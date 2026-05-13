@@ -31,8 +31,8 @@ type GitHubRelease = {
 
 const fallbackAssets: DownloadAsset[] = [
   {
-    name: 'ProctorUz-Setup.exe',
-    url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/ProctorUz-Setup.exe`,
+    name: 'ProctorUZ-Setup.exe',
+    url: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/ProctorUZ-Setup.exe`,
     kind: 'windows',
     checksum: `https://github.com/${siteConfig.releaseRepo}/releases/latest/download/SHA256SUMS.txt`
   },
