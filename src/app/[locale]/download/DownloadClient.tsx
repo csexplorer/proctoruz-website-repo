@@ -17,6 +17,7 @@ import {
   IconAlertCircle,
   IconBrandApple,
   IconBrandWindows,
+  IconBuildingBank,
   IconDeviceDesktop,
   IconDownload,
   IconFileTypeZip,
@@ -118,6 +119,32 @@ export function DownloadClient({ locale, copy, release }: Props) {
               </SimpleGrid>
             </Stack>
           ) : null}
+        </Container>
+      </section>
+
+      <section className={classes.pricing}>
+        <Container size="xl">
+          <Box className={classes.pricingPanel}>
+            <Stack gap="lg">
+              <ThemeIcon size={54} radius="md" color="teal" variant="light">
+                <IconBuildingBank size={28} />
+              </ThemeIcon>
+              <Stack gap="xs">
+                <Title order={2}>{copy.pricingTitle}</Title>
+                <Text c="dimmed" size="lg" className={classes.pricingText}>
+                  {copy.pricingText}
+                </Text>
+              </Stack>
+              <SimpleGrid cols={{ base: 1, md: 3 }} spacing="md">
+                {copy.pricingPlans.map((plan) => (
+                  <Box key={plan.title} className={classes.pricingCard}>
+                    <Title order={3}>{plan.title}</Title>
+                    <Text c="dimmed">{plan.text}</Text>
+                  </Box>
+                ))}
+              </SimpleGrid>
+            </Stack>
+          </Box>
         </Container>
       </section>
 

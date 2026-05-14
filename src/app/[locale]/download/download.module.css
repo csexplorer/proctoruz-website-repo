@@ -67,12 +67,17 @@
 }
 
 .downloads,
+.pricing,
 .guide {
   padding: 64px 0;
 }
 
 .downloads {
   background: #fff;
+}
+
+.pricing {
+  background: #f7faf9;
 }
 
 .card {
@@ -119,6 +124,32 @@
   line-height: 1.75;
 }
 
+.pricingPanel {
+  padding: 30px;
+  border: 1px solid rgba(19, 32, 31, 0.08);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.pricingText {
+  max-width: 780px;
+  line-height: 1.65;
+}
+
+.pricingCard {
+  min-height: 150px;
+  padding: 22px;
+  border: 1px solid rgba(19, 32, 31, 0.08);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.pricingCard h3 {
+  margin-bottom: 10px;
+  font-size: 21px;
+  line-height: 1.2;
+}
+
 @media (max-width: 62em) {
   .heroGrid {
     grid-template-columns: 1fr;
@@ -131,6 +162,7 @@
   }
 
   .downloads,
+  .pricing,
   .guide {
     padding: 48px 0;
   }

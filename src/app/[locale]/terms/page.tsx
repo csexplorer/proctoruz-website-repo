@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Text, Title } from '@mantine/core';
+import { Box, Container, Divider, Stack, Text, Title } from '@mantine/core';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getContent } from '@/content/site-content';
@@ -31,7 +31,26 @@ export default async function TermsPage({ params }: Props) {
       <Stack gap="xl">
         <Title order={1}>{copy.termsTitle}</Title>
         <Box className={classes.panel}>
-          <Text size="lg">{copy.termsText}</Text>
+          <Stack gap="xl">
+            <Stack gap="xs">
+              <Text c="dimmed" fw={700}>
+                {copy.lastUpdatedLabel}: {copy.lastUpdated}
+              </Text>
+              <Text size="lg">{copy.termsIntro}</Text>
+            </Stack>
+
+            <Divider />
+
+            {copy.termsSections.map((section) => (
+              <Stack key={section.title} gap="sm" className={classes.section}>
+                <Title order={2}>{section.title}</Title>
+                {section.body.map((paragraph) => (
+                  <Text key={paragraph}>{paragraph}</Text>
+                ))}
+              </Stack>
+            ))}
+          </Stack>
+
           <Text c="dimmed" mt="md">
             {copy.contactText.replace('support@proctor.uz', siteConfig.supportEmail)}
           </Text>

@@ -7,10 +7,19 @@
   line-height: 1;
 }
 
+.page h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.15;
+}
+
 .panel {
   padding: 30px;
   border: 1px solid rgba(19, 32, 31, 0.08);
   border-radius: 8px;
   background: #fff;
   line-height: 1.75;
+}
+
+.section {
+  max-width: 72ch;
 }
